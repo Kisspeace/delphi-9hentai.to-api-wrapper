@@ -1,3 +1,4 @@
+//♡2022 by Kisspeace. https://github.com/kisspeace
 unit NineHentaito.APITypes;
 
 interface
