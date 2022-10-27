@@ -11,7 +11,7 @@ uses
   Ninehentaito.API in '../source/Ninehentaito.API.pas';
 
 var
-  PrintObjects: boolean = false;
+  PrintObjects: boolean = FALSE;
   PrintJsonIdent: boolean = true;
   Nhentai: T9HentaiClient;
   Manga: T9HentaiBookObjList;
@@ -58,7 +58,7 @@ begin
     writeln(Book.GetCoverUrl);
     writeln(Book.GetImageThumbUrl(2));
     writeln(Book.GetImageUrl(6));
-    readln;
+//    readln;
 
     Manga.AddRange(Nhentai.GetRelatedBooks(Id));
     WriteTest('GetRelatedBooks');
@@ -70,6 +70,14 @@ begin
     if PrintObjects then
       Writeln(TJson.Stringify<T9HentaiTagAr>(Tags, PrintJsonIdent));
     Id := Tags[0].Id;
+
+    var LReq := T9HentaiBookSearchRec.Create('', 0);
+    LReq.AddIncludedTag(Tags[0]);
+    Manga.AddRange(Nhentai.GetBook('', 0, BOOK_SORT_NEWEST));
+    WriteTest('GetBook(By tags)');
+    if PrintObjects then
+      Writeln(TJson.Stringify<T9HentaiBookAr>(Manga.ToArray, PrintJsonIdent));
+    Manga.Clear;
 
     Tag := Nhentai.GetTagById(Id);
     WriteTest('GetTagById');
