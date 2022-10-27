@@ -11,8 +11,10 @@ uses
   Ninehentaito.API in '../source/Ninehentaito.API.pas';
 
 var
+  { ----------- Settings ----------- }
   PrintObjects: boolean = FALSE;
-  PrintJsonIdent: boolean = true;
+  PrintJsonIdent: boolean = TRUE;
+  { -------------------------------- }
   Nhentai: T9HentaiClient;
   Manga: T9HentaiBookObjList;
   Book: T9HentaiBook;
@@ -24,7 +26,6 @@ procedure WriteTest(ATestName: string);
 var
   StatusStr: string;
 begin
-
   if Nhentai.APIStatus then
     StatusStr := 'OK'
   else
@@ -40,7 +41,6 @@ end;
 
 begin
   try
-    { TODO -oUser -cConsole Main : Insert code here }
     Nhentai := T9HentaiClient.Create;
     Manga := T9HentaiBookObjList.Create;
 
@@ -58,7 +58,6 @@ begin
     writeln(Book.GetCoverUrl);
     writeln(Book.GetImageThumbUrl(2));
     writeln(Book.GetImageUrl(6));
-//    readln;
 
     Manga.AddRange(Nhentai.GetRelatedBooks(Id));
     WriteTest('GetRelatedBooks');
