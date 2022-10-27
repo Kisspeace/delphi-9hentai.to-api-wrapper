@@ -6,7 +6,7 @@
 
 uses
   System.SysUtils, net.HttpClient, net.HttpClientComponent, XSuperObject,
-  Speedometer,
+  System.Diagnostics,
   Ninehentaito.APITypes in '../source/Ninehentaito.APITypes.pas',
   Ninehentaito.API in '../source/Ninehentaito.API.pas';
 
